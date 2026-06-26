@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Proposal - Purchase Order Management PWA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-glow: #6366f1;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Glassmorphism Card Style */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Header Section */
+        .header-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-gradient);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .meta-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .meta-text strong {
+            color: var(--text-primary);
+        }
+
+        .prepared-by {
+            text-align: right;
+            border-left: 2px solid var(--accent-glow);
+            padding-left: 20px;
+        }
+
+        /* Typography */
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+        }
+
+        h2 i {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        /* Tech Stack Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tech-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+        }
+
+        .tech-value {
+            font-weight: 600;
+            color: #fff;
+            margin-top: 4px;
+        }
+
+        /* Scope Modules Framework */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .module-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .module-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .module-card h3 i {
+            color: var(--accent-glow);
+            font-size: 1rem;
+        }
+
+        .module-list {
+            list-style: none;
+        }
+
+        .module-list li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .module-list li::before {
+            content: "•";
+            color: var(--accent-glow);
+            font-weight: bold;
+        }
+
+        /* Timeline / Process Track */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--card-border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .timeline-duration {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tables styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--card-border);
+        }
+
+        td {
+            padding: 14px;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .highlight-row {
+            background: rgba(99, 102, 241, 0.08);
+        }
+
+        .highlight-row td {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Two Column Layout for Extras */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .exclusion-list, .deliverable-list {
+            list-style: none;
+        }
+
+        .exclusion-list li, .deliverable-list li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .exclusion-list li { color: #f87171; }
+        .deliverable-list li { color: #34d399; }
+
+        /* Footer Info */
+        .footer-note {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 768px) {
+            .header-grid, .two-col {
+                grid-template-columns: 1fr;
+            }
+            .prepared-by {
+                text-align: left;
+                border-left: none;
+                border-top: 2px solid var(--accent-glow);
+                padding-left: 0;
+                padding-top: 15px;
+            }
+            .card {
+                padding: 25px;
+            }
+        }
+
+        /* Print Mode Optimization */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+                padding: 0;
+            }
+            .card {
+                background: #fff;
+                border: none;
+                box-shadow: none;
+                padding: 20px 0;
+                page-break-inside: avoid;
+            }
+            h1, h2, h3, th, .highlight-row td, .tech-value {
+                color: #000 !important;
+                -webkit-text-fill-color: initial !important;
+                background: none !important;
+            }
+            .badge {
+                border: 1px solid #000;
+                color: #000;
+                background: none;
+                box-shadow: none;
+            }
+            td, .meta-text, p, .exclusion-list li, .deliverable-list li {
+                color: #333 !important;
+            }
+            .tech-item, .module-card {
+                border: 1px solid #ccc;
+                background: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header class="card">
+        <div class="header-grid">
+            <div>
+                <span class="badge">Commercial Proposal</span>
+                <h1>Purchase Order Management PWA</h1>
+                <div style="margin-top: 15px;" class="meta-text">
+                    <p>Prepared For: <strong>GSLF (Grey Sim Learnings Foundation) & FGSPL</strong></p>
+                </div>
+            </div>
+            <div class="prepared-by">
+                <p class="meta-text">Prepared By:</p>
+                <h3 style="color:#fff; font-weight:600;">AarkVoid Team</h3>
+                <p class="meta-text" style="font-size:0.85rem; margin-bottom:0;">Founder & Software Developer<br><strong>AarkVoid</strong></p>
+            </div>
+        </div>
+        
+        <div>
+            <h2><i class="fa-solid fa-rocket"></i> Project Overview</h2>
+            <p>AarkVoid proposes the development of a modern, secure, and scalable Purchase Order Management designed specifically for GSLF and FGSPL.</p>
+            <p>The solution will streamline the complete purchase order lifecycle from vendor management and PO creation to GST calculation, approvals, PDF generation, reporting, and deployment through an intuitive web application capable of native deployment across desktop and mobile form factors.</p>
+        </div>
+    </header>
+
+    <section class="card">
+        <h2><i class="fa-solid fa-layer-group"></i> Optimized Technology Stack</h2>
+        <div class="tech-grid">
+            <div class="tech-item"><span class="tech-label">Backend Architecture</span><span class="tech-value">Python 3 / Django</span></div>
+            <div class="tech-item"><span class="tech-label">Database Engine</span><span class="tech-value">PostgreSQL</span></div>
+            <div class="tech-item"><span class="tech-label">User Interface</span><span class="tech-value">Django Templates / Tailwind CSS</span></div>
+            <div class="tech-item"><span class="tech-label">API Framework</span><span class="tech-value">Django REST Framework</span></div>
+            <div class="tech-item"><span class="tech-label">Document Compiling</span><span class="tech-value">ReportLab (PDF)</span></div>
+            <div class="tech-item"><span class="tech-label">Data Processing</span><span class="tech-value">OpenPyXL (Excel Export)</span></div>
+            <div class="tech-item"><span class="tech-label">DevOps & Server</span><span class="tech-value">Docker / Gunicorn / Nginx</span></div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2><i class="fa-solid fa-list-check"></i> Functional Scope of Work</h2>
+        <div class="modules-grid">
+            <div class="module-card">
+                <h3><i class="fa-solid fa-user-shield"></i> Auth & Identity</h3>
+                <ul class="module-list">
+                    <li>Secure Session Login / Logout</li>
+                    <li>Granular RBAC Architecture</li>
+                    <li>Permission Provisioning Engine</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-building"></i> Multi-Org Engine</h3>
+                <ul class="module-list">
+                    <li>GSLF Organization Instance</li>
+                    <li>FGSPL Organization Instance</li>
+                    <li>Isolated Profile Settings</li>
+                    <li>Localized GST & Address Registers</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-handshake"></i> Vendor Directory</h3>
+                <ul class="module-list">
+                    <li>Multi-step Onboarding Workflow</li>
+                    <li>GSTIN & PAN Structural Vaults</li>
+                    <li>Banking Transaction Credentials</li>
+                    <li>Categorization Framework</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-file-invoice"></i> Lifecycle Management</h3>
+                <ul class="module-list">
+                    <li>Algorithmic PO Serial Engine</li>
+                    <li>Dynamic Line Item Rows</li>
+                    <li>State-Machine Lifecycle tracking</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-calculator"></i> Real-Time Tax Core</h3>
+                <ul class="module-list">
+                    <li>Automated CGST/SGST/IGST Matrix</li>
+                    <li>Live Computation Array</li>
+                    <li>Currency-to-Word Transfinites</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-file-pdf"></i> Corporate Document</h3>
+                <ul class="module-list">
+                    <li>Branded Vector PDF Pipeline</li>
+                    <li>Dynamic Organizational Assets</li>
+                    <li>Structured Legal Disclaimers</li>
+                    <li>Digital Signature Anchors</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-chart-pie"></i> Intelligence Center</h3>
+                <ul class="module-list">
+                    <li>Aggregated PO Throughput</li>
+                    <li>Cross-Vendor Analytics Matrices</li>
+                    <li>Parametric Audit Trails</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Systems Delivery</h3>
+                <ul class="module-list">
+                    <li>Automated Docker Containers</li>
+                    <li>Comprehensive Source Handover</li>
+                    <li>Systems Runbooks & Documentation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="two-col">
+        <section class="card">
+            <h2><i class="fa-solid fa-calendar-days"></i> Project Milestones</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">Design & Architecture Planning</div>
+                    <div class="timeline-duration">4 – 5 Working Days</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">Core Engine & Modules Development</div>
+                    <div class="timeline-duration">18 – 21 Working Days</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">Quality Assurance & System Validation</div>
+                    <div class="timeline-duration">4 Working Days</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">Production Deployment & Knowledge Transfer</div>
+                    <div class="timeline-duration">4 Working Days</div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-weight: 600; color: #fff;">Total Estimated Duration: 29 – 30 Working Days</p>
+        </section>
+
+        <section class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <h2><i class="fa-solid fa-credit-card"></i> Financial Outlay</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scope Component</th>
+                            <th style="text-align: right;">Cost Mapping</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Purchase Order Management PWA Core Development</td>
+                            <td style="text-align: right; color: #fff;">₹79,999</td>
+                        </tr>
+                        <tr>
+                            <td>Statutory Taxes (GST)</td>
+                            <td style="text-align: right;">As Applicable</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>Gross Project Valuation</td>
+                            <td style="text-align: right;">₹79,999</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="margin-top: 20px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid var(--card-border);">
+                <span style="color: var(--success); font-weight: 600; font-size: 0.9rem;"><i class="fa-solid fa-circle-check"></i> Included Assets:</span>
+                <p style="font-size: 0.85rem; margin: 5px 0 0 0;">Full Source Code, Deployment Systems setup, Reference Documentation, and a 30-Day Complimentary Production Hypercare Support Window.</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="two-col">
+        <section class="card">
+            <h2><i class="fa-solid fa-circle-xmark" style="color: #f87171;"></i> Strategic Exclusions</h2>
+            <ul class="exclusion-list">
+                <li><i class="fa-solid fa-ban"></i> Third-party Email/SMS API Transaction charges</li>
+                <li><i class="fa-solid fa-ban"></i> Cloud Environment Hosting & Infra Provisioning</li>
+                <li><i class="fa-solid fa-ban"></i> Domain Registration & SSL Procurement</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2><i class="fa-solid fa-receipt"></i> Milestone Invoicing</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase Milestone Trigger</th>
+                        <th style="text-align: right;">Ratio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Project Onboarding / Commencement Advance</td>
+                        <td style="text-align: right; color:#fff; font-weight:600;">40%</td>
+                    </tr>
+                    <tr>
+                        <td>Core Functional Modules Completion Stage</td>
+                        <td style="text-align: right; color:#fff; font-weight:600;">40%</td>
+                    </tr>
+                    <tr>
+                        <td>Pre-Production Deployment Approval Sign-off</td>
+                        <td style="text-align: right; color:#fff; font-weight:600;">20%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <section class="card">
+        <div class="two-col">
+            <div>
+                <h3><i class="fa-solid fa-screwdriver-wrench"></i> Optional SLAs (Post-Warranty)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Support Structure Model</th>
+                            <th style="text-align: right;">Rate Deck</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Extended Recurring Support Matrix (AMC)</td>
+                            <td style="text-align: right; color: #fff;">₹5,000 / Mo</td>
+                        </tr>
+                        <tr>
+                            <td>On-Demand Incremental Iteration Pipeline</td>
+                            <td style="text-align: right; color: #fff;">₹600 / Hr</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center; background: rgba(255,255,255,0.02); border: 1px dashed var(--card-border); padding: 25px; border-radius: 16px;">
+                <h3 style="color:#fff; margin-bottom: 10px;"><i class="fa-solid fa-clock-rotate-left" style="color: var(--accent-glow);"></i> Proposal Lifecycle Validity</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 0;">This engineering and commercial baseline remains valid for exactly <strong>15 Days</strong> from the formal transmission stamp date.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-note">
+        <p>&copy; 2026 AarkVoid. Engineered with focus on agility, precision, and performance.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

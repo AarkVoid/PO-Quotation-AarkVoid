@@ -157,7 +157,7 @@
             margin-top: 4px;
         }
 
-        /* Scope Modules Framework */
+        /* Scope Modules & Screens Framework */
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -202,6 +202,34 @@
             content: "•";
             color: var(--accent-glow);
             font-weight: bold;
+        }
+
+        /* Screen Grid Styling */
+        .screens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .screen-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .screen-card i {
+            color: var(--success);
+            font-size: 1.1rem;
+        }
+
+        .screen-name {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.95rem;
         }
 
         /* Timeline / Process Track */
@@ -359,7 +387,7 @@
             td, .meta-text, p, .exclusion-list li, .deliverable-list li {
                 color: #333 !important;
             }
-            .tech-item, .module-card {
+            .tech-item, .module-card, .screen-card {
                 border: 1px solid #ccc;
                 background: none;
             }
@@ -388,7 +416,7 @@
         
         <div>
             <h2><i class="fa-solid fa-rocket"></i> Project Overview</h2>
-            <p>AarkVoid proposes the development of a modern, secure, and scalable Purchase Order Management designed specifically for GSLF and FGSPL.</p>
+            <p>AarkVoid proposes the development of a modern, secure, and scalable Purchase Order Management system designed specifically for GSLF and FGSPL.</p>
             <p>The solution will streamline the complete purchase order lifecycle from vendor management and PO creation to GST calculation, approvals, PDF generation, reporting, and deployment through an intuitive web application capable of native deployment across desktop and mobile form factors.</p>
         </div>
     </header>
@@ -407,75 +435,167 @@
     </section>
 
     <section class="card">
-        <h2><i class="fa-solid fa-list-check"></i> Functional Scope of Work</h2>
+        <h2><i class="fa-solid fa-list-check"></i> Functional Scope of Work (14 Feature Cards)</h2>
         <div class="modules-grid">
             <div class="module-card">
-                <h3><i class="fa-solid fa-user-shield"></i> Auth & Identity</h3>
+                <h3><i class="fa-solid fa-user-shield"></i> 1. Auth & Identity</h3>
                 <ul class="module-list">
-                    <li>Secure Session Login / Logout</li>
-                    <li>Granular RBAC Architecture</li>
-                    <li>Permission Provisioning Engine</li>
+                    <li>Secure Login Protocols</li>
+                    <li>Session Logout Mechanisms</li>
+                    <li>Admin & User Role Provisioning</li>
+                    <li>Advanced Password Security Baseline</li>
                 </ul>
             </div>
             <div class="module-card">
-                <h3><i class="fa-solid fa-building"></i> Multi-Org Engine</h3>
+                <h3><i class="fa-solid fa-building"></i> 2. Multi-Org Core</h3>
                 <ul class="module-list">
-                    <li>GSLF Organization Instance</li>
-                    <li>FGSPL Organization Instance</li>
-                    <li>Isolated Profile Settings</li>
-                    <li>Localized GST & Address Registers</li>
+                    <li>Multiple Organizations Support</li>
+                    <li>GSLF Profile Instance</li>
+                    <li>FGSPL Profile Instance</li>
+                    <li>GSTIN, CIN & Logo Vaults</li>
+                    <li>Default Signatory Configurator</li>
                 </ul>
             </div>
             <div class="module-card">
-                <h3><i class="fa-solid fa-handshake"></i> Vendor Directory</h3>
+                <h3><i class="fa-solid fa-address-book"></i> 3. Vendor Directory</h3>
                 <ul class="module-list">
-                    <li>Multi-step Onboarding Workflow</li>
-                    <li>GSTIN & PAN Structural Vaults</li>
-                    <li>Banking Transaction Credentials</li>
-                    <li>Categorization Framework</li>
+                    <li>Comprehensive Vendor CRUD</li>
+                    <li>Vendor Categories Engine</li>
+                    <li>GSTIN & PAN Registration</li>
+                    <li>Banking Account Specifications</li>
+                    <li>Global Indexing & Quick Search</li>
+                    <li>Reusable Corporate Database</li>
                 </ul>
             </div>
             <div class="module-card">
-                <h3><i class="fa-solid fa-file-invoice"></i> Lifecycle Management</h3>
+                <h3><i class="fa-solid fa-id-card"></i> 4. Vendor Dashboard</h3>
                 <ul class="module-list">
-                    <li>Algorithmic PO Serial Engine</li>
-                    <li>Dynamic Line Item Rows</li>
-                    <li>State-Machine Lifecycle tracking</li>
+                    <li>Latest Active PO Tracking</li>
+                    <li>Advanced Vendor Lookups</li>
+                    <li>Categorized Global Entities</li>
+                    <li>IBM, Infosys & Panasonic Presets</li>
                 </ul>
             </div>
             <div class="module-card">
-                <h3><i class="fa-solid fa-calculator"></i> Real-Time Tax Core</h3>
+                <h3><i class="fa-solid fa-file-invoice"></i> 5. Purchase Order Lifecycle</h3>
                 <ul class="module-list">
-                    <li>Automated CGST/SGST/IGST Matrix</li>
-                    <li>Live Computation Array</li>
-                    <li>Currency-to-Word Transfinites</li>
+                    <li>Create, Edit & Delete PO</li>
+                    <li>Automated Unique Serial Numbers</li>
+                    <li>Dynamic Draft Storage State</li>
+                    <li>Generated & Sign-Ready States</li>
+                    <li>Paid, Unpaid & Cancelled States</li>
                 </ul>
             </div>
             <div class="module-card">
-                <h3><i class="fa-solid fa-file-pdf"></i> Corporate Document</h3>
+                <h3><i class="fa-solid fa-calculator"></i> 6. Algorithmic GST Core</h3>
                 <ul class="module-list">
-                    <li>Branded Vector PDF Pipeline</li>
-                    <li>Dynamic Organizational Assets</li>
-                    <li>Structured Legal Disclaimers</li>
-                    <li>Digital Signature Anchors</li>
+                    <li>CGST Rules Calculation</li>
+                    <li>SGST Rules Calculation</li>
+                    <li>IGST Rules Calculation</li>
+                    <li>Auto Regional Jurisdiction Detection</li>
+                    <li>Cross-State Rule Matrices</li>
+                    <li>Amount-to-Words Text Generation</li>
                 </ul>
             </div>
             <div class="module-card">
-                <h3><i class="fa-solid fa-chart-pie"></i> Intelligence Center</h3>
+                <h3><i class="fa-solid fa-bars-staggered"></i> 7. Dynamic Line Items</h3>
                 <ul class="module-list">
-                    <li>Aggregated PO Throughput</li>
-                    <li>Cross-Vendor Analytics Matrices</li>
-                    <li>Parametric Audit Trails</li>
+                    <li>Unlimited Row Items Expansion</li>
+                    <li>HSN Code Compliance Mapping</li>
+                    <li>Quantity & Standard Unit Rates</li>
+                    <li>Tax Percentage Overlays</li>
+                    <li>Real-Time Automated Totals</li>
                 </ul>
             </div>
             <div class="module-card">
-                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Systems Delivery</h3>
+                <h3><i class="fa-solid fa-file-pdf"></i> 8. Branded PDF Compiler</h3>
                 <ul class="module-list">
-                    <li>Automated Docker Containers</li>
-                    <li>Comprehensive Source Handover</li>
-                    <li>Systems Runbooks & Documentation</li>
+                    <li>Corporate Logo Integration</li>
+                    <li>Professional Header System</li>
+                    <li>GSTIN & CIN Static Prints</li>
+                    <li>Digital Signatures Anchors</li>
+                    <li>Legal Terms & Layout Rules</li>
                 </ul>
             </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-chart-line"></i> 9. Enterprise Reports</h3>
+                <ul class="module-list">
+                    <li>Vendor Distribution Matrix</li>
+                    <li>Chronological Date Filters</li>
+                    <li>Paid vs Unpaid Transaction Ledgers</li>
+                    <li>Structured Excel Sheet Exports</li>
+                    <li>Formatted PDF Export Engine</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-chart-pie"></i> 10. Executive Overview</h3>
+                <ul class="module-list">
+                    <li>Total Registered Vendor Counter</li>
+                    <li>Total Generated PO Analytics</li>
+                    <li>Gross Paid Volume Tracks</li>
+                    <li>Pending Remittance Pipelines</li>
+                    <li>Interactive Graphical Trends</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-sliders"></i> 11. Core System Settings</h3>
+                <ul class="module-list">
+                    <li>Legal Terms Customizations</li>
+                    <li>Global Organization Variables</li>
+                    <li>User Configuration Controls</li>
+                    <li>Global Taxonomy & Categories</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-network-wired"></i> 12. Integration REST API</h3>
+                <ul class="module-list">
+                    <li>Organizations Endpoint Grid</li>
+                    <li>Vendors Data Pipeline Access</li>
+                    <li>Purchase Orders Sync Protocol</li>
+                    <li>System Categories Restructuring</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-server"></i> 13. Production DevOps</h3>
+                <ul class="module-list">
+                    <li>Docker Containerization</li>
+                    <li>Gunicorn WSGI Management</li>
+                    <li>Nginx High-Performance Proxy</li>
+                    <li>Production Environment Runbooks</li>
+                </ul>
+            </div>
+            <div class="module-card">
+                <h3><i class="fa-solid fa-book-open"></i> 14. Knowledge Transfer</h3>
+                <ul class="module-list">
+                    <li>Fully Commented Source Code</li>
+                    <li>End-User Instruction Manual</li>
+                    <li>Operational System README</li>
+                    <li>Interactive REST API Schema Docs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2><i class="fa-solid fa-display"></i> Application Screens</h2>
+        <p>The system layout covers the following dedicated UI views and dynamic dashboards optimized for rapid execution within the Progressive Web Application layout as dictated by the Software Requirements Document (SRD):</p>
+        <div class="screens-grid">
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Login</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Dashboard</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Organization Selection</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Vendor Dashboard</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Vendor Management</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Vendor Categories</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Create Purchase Order</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Edit Purchase Order</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Purchase Order Details</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Reports</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">User Management</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Organization Settings</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Terms & Conditions</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">Profile</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">PDF Preview</span></div>
+            <div class="screen-card"><i class="fa-solid fa-circle-check"></i><span class="screen-name">System Settings</span></div>
         </div>
     </section>
 
@@ -485,22 +605,22 @@
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-title">Design & Architecture Planning</div>
-                    <div class="timeline-duration">4 – 5 Working Days</div>
+                    <div class="timeline-duration">7 – 9 Working Days</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-title">Core Engine & Modules Development</div>
-                    <div class="timeline-duration">18 – 21 Working Days</div>
+                    <div class="timeline-duration">34 – 36 Working Days</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-title">Quality Assurance & System Validation</div>
-                    <div class="timeline-duration">4 Working Days</div>
+                    <div class="timeline-duration">8 Working Days</div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-title">Production Deployment & Knowledge Transfer</div>
-                    <div class="timeline-duration">4 Working Days</div>
+                    <div class="timeline-duration">5 Working Days</div>
                 </div>
             </div>
-            <p style="margin-top: 15px; font-weight: 600; color: #fff;">Total Estimated Duration: 29 – 30 Working Days</p>
+            <p style="margin-top: 15px; font-weight: 600; color: #fff;">Total Estimated Duration: 56 – 58 Working Days</p>
         </section>
 
         <section class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
@@ -540,7 +660,7 @@
         <section class="card">
             <h2><i class="fa-solid fa-circle-xmark" style="color: #f87171;"></i> Strategic Exclusions</h2>
             <ul class="exclusion-list">
-                <li><i class="fa-solid fa-ban"></i> Third-party Email/SMS API </li>
+                <li><i class="fa-solid fa-ban"></i> Third-party Email/SMS API keys or service billing costs.</li>
                 <li><i class="fa-solid fa-ban"></i> AarkVoid will install, configure, deploy, and verify the application on the client-provided environment.</li>
                 <li><i class="fa-solid fa-ban"></i> Client will provide the domain name and SSL certificate (if applicable).</li>
                 <li><i class="fa-solid fa-ban"></i> One-time deployment and production setup are included. Ongoing server administration, monitoring, upgrades, and infrastructure maintenance are outside the scope of this proposal unless covered under a separate maintenance agreement.</li>
